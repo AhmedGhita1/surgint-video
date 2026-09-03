@@ -1,10 +1,10 @@
-# ORION Scope Contract
+# ARGUS Scope Contract
 
 
 ## 1. Use case
 
 > A surgical procedure was recorded from several fixed cameras. Someone asks, in
-> natural language, when something happened. ORION returns the ranked moments on the
+> natural language, when something happened. ARGUS returns the ranked moments on the
 > procedure timeline and the camera that best shows each one.
 
 The asker is a person reviewing a finished recording — for training review, workflow
@@ -41,7 +41,7 @@ These are choices, not gaps.
 | Not doing | Because |
 |---|---|
 | real-time or streaming | the unit of work is a query over a finished recording |
-| understanding surgery | ORION retrieves moments; it makes no clinical claim of any kind |
+| understanding surgery | ARGUS retrieves moments; it makes no clinical claim of any kind |
 | camera synchronization | MM-OR provides it; the timeline is given |
 | video decoding | MM-OR ships frames; there is no decode stage to build |
 | detection, tracking, segmentation, pose | not produced, not consumed, not evaluated |
@@ -62,7 +62,7 @@ Grounded in `data/MM-OR/MM-OR_processed`, take `001_PKA` as the reference:
 - **Streams.** `camera01`–`camera05` (ceiling RGB-D), `trackercam` (detail view),
   `simstation` (the Mako robot's *screen*, not a view of the room).
 - **Timepoint index.** `timestamp_to_pcd_and_frames_list.json` maps a timepoint to the
-  frame number in each stream. This is the only alignment ORION needs.
+  frame number in each stream. This is the only alignment ARGUS needs.
 - **Relation labels.** `relation_labels/NNNNNN.json` holds `(subject, predicate, object)`
   triples per annotated timepoint. 18 takes carry them, 44–3,466 timepoints each.
 - **Phase labels.** `take_timestamp_to_robot_phase/*.json` gives a phase string per
@@ -74,7 +74,7 @@ Two facts from this shape everything downstream:
 
 **Rare positives.** Per take: `Hammering` 15, `Scanning` 3, `Cleaning` 5, `Suturing` 9,
 `Sawing` 59 — against `CloseTo` 6,262. The queries the README advertises are the rarest
-events in the data. ORION is a needle-in-a-haystack retrieval problem, and single-take
+events in the data. ARGUS is a needle-in-a-haystack retrieval problem, and single-take
 metrics on single-digit positives are noise.
 
 **Label leak.** Robot phase labels are read off the `simstation` screen, and
@@ -86,7 +86,7 @@ queries be answered by reading a monitor rather than by observing the room.
 ## 5. What counts as correct
 
 Ground truth is derived from MM-OR annotations. Four calls, made now, that fix the
-meaning of every number ORION will ever report:
+meaning of every number ARGUS will ever report:
 
 **5.1 Query vocabulary is closed, and action-only.**
 Queries are templated from the annotation vocabulary. Only *action* predicates are

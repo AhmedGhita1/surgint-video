@@ -1,6 +1,6 @@
-# ORION
+# ARGUS
 
-*Operating-Room Interval retrieval frOm Natural language*
+*video event retrieval in the operating room*
 
 natural language event retrieval over long, multi-camera operating room videos.
 
