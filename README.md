@@ -58,6 +58,20 @@ action predicates include:
     - `suturing`
     - `touching`
 
+#### download
+
+MM-OR is hosted by TUM CAMP. access requires filling the form linked from
+[egeozsoy/MM-OR](https://github.com/egeozsoy/MM-OR) and agreeing to the terms of use.
+
+```bash
+cd data
+./download_mm-or.sh --dry-run
+./download_mm-or.sh
+```
+
+resumable — each archive gets a marker in `markers/`, so re-running skips whatever
+already finished. archives are deleted after extraction.
+
 
 ## system story
 
