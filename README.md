@@ -1,11 +1,10 @@
-# ARGUS
+# surgint-video
 
 *video event retrieval in the operating room*
 
 natural language event retrieval over long, multi-camera operating room videos.
 
-the systems indexes synchronized OR video streams and retrieves relevant temporal
-segments from text queries such as:
+the systems indexes synchronized OR video streams and retrieves relevant temporal segments using text queries such as:
 
 - *"find whwen the surgeon is sawing"*
 - *"show when the robot is being calibrated"*
@@ -65,12 +64,23 @@ MM-OR is hosted by TUM CAMP. access requires filling the form linked from
 
 ```bash
 cd data
-./download_mm-or.sh --dry-run
-./download_mm-or.sh
+./download_mm-or_dev.sh --dry-run
+./download_mm-or_dev.sh      # dev subset, ~13 GB
+./download_mm-or.sh          # full set, ~501 GB compressed
 ```
 
+the dev subset is all annotations, the audio, and three short takes (`005_TKA`, `009_TKA`,
+`013_PKA`) — enough to build the pipeline end to end.
+
 resumable — each archive gets a marker in `markers/`, so re-running skips whatever
-already finished. archives are deleted after extraction.
+already finished. both scripts share `markers/`, so the full download skips the dev
+subset. archives are deleted after extraction.
+
+on windows, run from PowerShell through Git Bash (plain `bash` there is WSL):
+
+```powershell
+& "C:\Program Files\Git\bin\bash.exe" ./download_mm-or_dev.sh
+```
 
 
 ## system story
